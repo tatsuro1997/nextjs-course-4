@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import useSWR from "swr";
@@ -92,6 +93,13 @@ function FilteredEventsPage(props) {
 
   return (
     <>
+      <Head>
+        <title>Filtered Events</title>
+        <meta
+          name="description"
+          constent={`All events for ${numMonth}/${numYear}.`}
+        />
+      </Head>
       <ResultsTitle date={date} />
       <EventList items={filteredEvents} />
     </>
@@ -139,5 +147,3 @@ function FilteredEventsPage(props) {
 // }
 
 export default FilteredEventsPage;
-
-
