@@ -21,10 +21,7 @@ function EventDetailPage(props) {
     <>
       <Head>
         <title>{event.title}</title>
-        <meta
-          name="description"
-          constent={event.description}
-        />
+        <meta name="description" constent={event.description} />
       </Head>
       <EventSummary title={event.title} />
       <EventLogistics
@@ -49,7 +46,7 @@ export async function getStaticProps(context) {
     props: {
       selectedEvent: event,
     },
-    revalidate: 30
+    revalidate: 30,
   };
 }
 
@@ -60,7 +57,7 @@ export async function getStaticPaths() {
 
   return {
     paths: paths,
-    fallback: 'blocking',
+    fallback: "blocking",
   };
 }
 

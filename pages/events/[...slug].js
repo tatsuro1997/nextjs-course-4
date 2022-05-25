@@ -67,7 +67,8 @@ function FilteredEventsPage(props) {
     numYear > 2030 ||
     numYear < 2021 ||
     numMonth < 1 ||
-    numMonth > 12 || error
+    numMonth > 12 ||
+    error
   ) {
     return (
       <>
