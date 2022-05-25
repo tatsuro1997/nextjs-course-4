@@ -21,8 +21,6 @@ function FilteredEventsPage(props) {
     fetcher
   );
 
-  console.log(data);
-
   useEffect(() => {
     if (data) {
       const events = [];
@@ -38,15 +36,30 @@ function FilteredEventsPage(props) {
     }
   }, [data]);
 
-  if (!loadedEvents) {
-    return <p className="center">Loading...</p>;
-  }
-
   const filteredYear = filterData[0];
   const filteredMonth = filterData[1];
 
   const numYear = +filteredYear;
   const numMonth = +filteredMonth;
+
+  const pageHeadData = (
+    <Head>
+      <title>Filtered Events</title>
+      <meta
+        name="description"
+        constent={`All events for ${numMonth}/${numYear}.`}
+      />
+    </Head>
+  );
+
+  if (!loadedEvents) {
+    return (
+      <>
+        {pageHeadData}
+        <p className="center">Loading...</p>;
+      </>
+    );
+  }
 
   if (
     isNaN(numYear) ||
@@ -58,6 +71,7 @@ function FilteredEventsPage(props) {
   ) {
     return (
       <>
+        {pageHeadData}
         <ErrorAlert>
           <p>Invaild filter. Please adjust your values.</p>
         </ErrorAlert>
@@ -79,6 +93,7 @@ function FilteredEventsPage(props) {
   if (!filteredEvents || filteredEvents.length === 0) {
     return (
       <>
+        {pageHeadData}
         <ErrorAlert>
           <p>No events found for chosen filter!</p>
         </ErrorAlert>
@@ -93,13 +108,7 @@ function FilteredEventsPage(props) {
 
   return (
     <>
-      <Head>
-        <title>Filtered Events</title>
-        <meta
-          name="description"
-          constent={`All events for ${numMonth}/${numYear}.`}
-        />
-      </Head>
+      {pageHeadData}
       <ResultsTitle date={date} />
       <EventList items={filteredEvents} />
     </>
