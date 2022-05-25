@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { isValidElement } from "react/cjs/react.production.min";
+
 import EventContent from "../../components/event-detail/event-content";
 import EventLogistics from "../../components/event-detail/event-logistics";
 import EventSummary from "../../components/event-detail/event-summary";
