@@ -1,31 +1,20 @@
-import { useState } from 'react';
-
-import CommentList from './comment-list';
-import NewComment from './new-comment';
 import classes from './comment-list.module.css';
 
-function Comments(props) {
-  const { eventId } = props;
-
-  const [showComments, setShowComments] = useState(false);
-
-  function toggleCommentsHandler() {
-    setShowComments((prevStatus) => !prevStatus);
-  }
-
-  function addCommentHandler(commentData) {
-    // send data to API
-  }
+function CommentList(props) {
+  const { items } = props;
 
   return (
-    <section className={classes.comments}>
-      <button onClick={toggleCommentsHandler}>
-        {showComments ? 'Hide' : 'Show'} Comments
-      </button>
-      {showComments && <NewComment onAddComment={addCommentHandler} />}
-      {showComments && <CommentList />}
-    </section>
+    <ul className={classes.comments}>
+      {items && items.map(item => (
+        <li key={item.id}>
+          <p>{item.text}</p>
+          <div>
+            By <address>{item.name}</address>
+          </div>
+        </li>
+      ))}
+    </ul>
   );
 }
 
-export default Comments;
+export default CommentList;

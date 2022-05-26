@@ -24,7 +24,7 @@ function handler(req, res) {
 
     console.log(email, name, text);
 
-    re.status(201).json({ message: "Added comment.", comment: newComment });
+    res.status(201).json({ message: "Added comment.", comment: newComment });
   }
 
   if (req.method === "GET") {
@@ -33,7 +33,7 @@ function handler(req, res) {
       { id: "c2", name: "Manual", text: "A second comment!" },
     ];
 
-    res.status(200).json({ coments: dummyList });
+    res.status(200).json({ comments: dummyList });
   }
 }
 
