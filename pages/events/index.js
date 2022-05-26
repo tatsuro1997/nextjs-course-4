@@ -41,3 +41,6 @@ export async function getStaticProps() {
 }
 
 export default AllEventsPage;
+
+
+
