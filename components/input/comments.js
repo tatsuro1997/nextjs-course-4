@@ -11,12 +11,10 @@ function Comments(props) {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    console.log('eventId', eventId);
     if (showComments) {
       fetch("/api/comments/" + eventId)
         .then((response) => response.json())
         .then((data) => {
-          console.log('comments', data.comments);
           setComments(data.comments);
         });
     }

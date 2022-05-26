@@ -1,18 +1,4 @@
-import { MongoClient } from "mongodb";
-
-async function connectDatabase() {
-  const client = await MongoClient.connect(
-    "mongodb+srv://tatz:eB!fyXeYShek!2P@cluster0.smxrn.mongodb.net/events?retryWrites=true&w=majority"
-  );
-
-  return client;
-}
-
-async function insertDocument(client, document) {
-  const db = client.db();
-
-  await db.collection("newsletter").insertOne(document);
-}
+import { connectDatabase } from "../../healpers/db-util";
 
 async function handler(req, res) {
   if (req.method === "POST") {
@@ -35,7 +21,7 @@ async function handler(req, res) {
     }
 
     try {
-      await insertDocument(client, { email: userEmail });
+      await insertDocument(client, 'newsletter', { email: userEmail });
       client.close();
     } catch (error) {
       res.status(500).json({
